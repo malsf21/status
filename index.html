@@ -8,6 +8,11 @@
 		<link rel="icon" href="css/favicon.ico" />
     <link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/font-awesome.css" />
+		<style>
+			.label a{
+				color:white;
+			}
+		</style>
   </head>
   <body>
 		<div class="container">
@@ -38,7 +43,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="well">
-						<h2><span class="fa fa-github"> <span class="label label-primary">Matt was on GitHub</span></h2>
+						<h2><span class="fa fa-github"> <span class="label label-primary"><a href="http://github.com/malsf21">Matt was on GitHub</a></span></h2>
 						<h4>editing the <span class="label label-info" id="repo"></span></h4>
 						<h6 id="github_time"></h6>
 					</div>
@@ -48,11 +53,11 @@
 						<div class="row">
 							<div class="col-md-6">
 								<h2><span class="fa fa-instagram"></span> <span class="label label-warning">Matt's Insta</span></h2>
-								<h4>Outstanding burger #bmun64</h4>
-								<h6>Taken at 4:20 PM at the Melt</h6>
+								<h4 id="instagram_caption"></h4>
+								<h6 id="instagram_info"></h6>
 							</div>
 							<div class="col-md-6">
-								<img class="img-responsive img-thumbnail" src="https:\/\/scontent-ord1-1.cdninstagram.com\/t51.2885-15\/s150x150\/e35\/12783833_175421189506338_1700463373_n.jpg?ig_cache_key=MTIwMDMyOTA4MDIxNTA1OTU1NA%3D%3D.2"></img>
+								<img class="img-responsive img-thumbnail" src="" alt="loading..." id="instagram_pic"></img>
 							</div>
 						</div>
 					</div>
@@ -66,7 +71,6 @@
 	<script src="js/league_parser.js"></script>
 	<script src="js/twitch_parser.js"></script>
 	<script src="js/github_parser.js"></script>
-	<script src="js/instagram_parser.js"></script>
 	<script type="text/javascript">
 		if (streaming === true){
 			$("#streaming").html("Matt's Live!");
@@ -86,7 +90,18 @@
 			$("#league").html("Matt isn't playing League");
 			$("#league").addClass("label-danger");
 		}
-		$("#repo").html(github_repo + " repository");
+
+		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
 		$("#github_time").html(github_time);
+		var instagram_date = "";
+		var instagram_caption = "";
+		var instagram_location = "";
+		function instaInfo(){
+			$("#instagram_caption").html(instagram_caption);
+			$("#instagram_info").html(instagram_date + " at " + instagram_location);
+			$("#instagram_pic").attr("src", instagram_photo);
+		}
+
 	</script>
+	<script src="js/instagram_parser.js"></script>
 </html>
