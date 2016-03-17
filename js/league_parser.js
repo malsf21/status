@@ -31,6 +31,8 @@ $.ajax({
           break;
         }
       }
+      console.log(league_champ);
+      console.log(league_champ_jsonData);
       var league_champ = league_champ_jsonData["data"][String(champid)]["name"];
     },
     error: function(data) {
