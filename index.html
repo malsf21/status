@@ -39,8 +39,8 @@
 				<div class="col-md-4">
 					<div class="well">
 						<h2><span class="fa fa-github"> <span class="label label-primary">Matt was on GitHub</span></h2>
-						<h4>editing the <span class="label label-info">status repository</span></h4>
-						<h6>at 4:20 PM, April 20th 2016</h6>
+						<h4>editing the <span class="label label-info" id="repo"></span></h4>
+						<h6 id="github_time"></h6>
 					</div>
 				</div>
 				<div class="col-md-3">
@@ -61,6 +61,7 @@
 	<script src="js/structure.js"></script>
 	<script src="js/league_parser.js"></script>
 	<script src="js/twitch_parser.js"></script>
+	<script src="js/github_parser.js"></script>
 	<script src="js/instagram_parser.js"></script>
 	<script type="text/javascript">
 		if (streaming === true){
@@ -81,15 +82,7 @@
 			$("#league").html("Matt isn't playing League");
 			$("#league").addClass("label-danger");
 		}
-		if (playingLeague === true){
-			$("#answer").html("Well he is.");
-			$("#stream").html("In fact, he's probably streaming right now!");
-			$("#mode").html(league_game_mode);
-			$("#champ").html(league_champ);
-		}
-		else{
-			$("#answer").html("Well he ain't.");
-			$("#info").hide();
-		}
+		$("#repo").html(github_repo + " repository");
+		$("#github_time").html(github_time);
 	</script>
 </html>
