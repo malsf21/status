@@ -2,8 +2,10 @@ $.ajax({
     url: 'php/game.php?summonerid=65443758',
     dataType: "json",
     success: function(league_game_jsonData) {
+
       var league_champ_data = httpGet("php/champion.php");
       var league_champ_jsonData = JSON.parse(league_champ_data);
+
       playingLeague = true;
       league_game_mode = "Custom/Unidentified";
       league_game_type = league_game_jsonData["gameQueueConfigId"];
@@ -32,6 +34,10 @@ $.ajax({
         }
       }
       league_champ = league_champ_jsonData["data"][champid]["name"];
+
+      var league_summoner_data = httpGet("php/summoner.php");
+      var league_summoner_jsonData = JSON.parse(league_summoner_data);
+      console.log(league_summoner_data);
     },
     error: function(data) {
         var playingLeague = false;
