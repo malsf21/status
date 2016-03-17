@@ -3,8 +3,8 @@ $.ajax({
     dataType: "json",
     success: function(league_game_jsonData) {
       console.log("true");
-      var playingLeague = true;
-      var league_game_mode = "Custom/Unidentified";
+      playingLeague = true;
+      league_game_mode = "Custom/Unidentified";
       league_game_type = league_game_jsonData["gameQueueConfigId"];
       if (league_game_type == 2){
         league_game_mode = "Blind Pick";
@@ -35,7 +35,8 @@ $.ajax({
         var playingLeague = false;
         console.log("false");
     }
-})
+});
+leagueInfo();
 
 /*
 var league_game_data = httpGet("php/game.php?summonerid=65443758");
