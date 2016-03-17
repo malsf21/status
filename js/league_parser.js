@@ -1,7 +1,7 @@
 $.ajax({
     url: 'php/game.php?summonerid=65443758',
     dataType: "json",
-    success: function(league_game_league_game_jsonData) {
+    success: function(league_game_jsonData) {
       console.log("true");
       playingLeague = true;
       league_game_mode = "Custom/Unidentified";
