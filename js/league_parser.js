@@ -38,6 +38,11 @@ $.ajax({
       var league_summoner_data = httpGet("php/summoner.php");
       var league_summoner_jsonData = JSON.parse(league_summoner_data);
       console.log(league_summoner_data);
+
+      league_summoner_tier = league_summoner_data['65443758']["tier"];
+      league_summoner_division = league_summoner_data['65443758']["entries"]["division"];
+      console.log(league_summoner_tier);
+      console.log(league_summoner_division);
     },
     error: function(data) {
         var playingLeague = false;
