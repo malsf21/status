@@ -1,4 +1,4 @@
-var league_game_data = httpGet("php/game_json.php?summonerid=65443758");
+var league_game_data = httpGet("php/game.php?summonerid=65443758");
 var league_game_jsonData = JSON.parse(league_game_data);
 
 var playingLeague = false;
@@ -6,7 +6,7 @@ if ("status" in league_game_jsonData){
   playingLeague = false;
 }
 else{
-  var league_champ_data = httpGet("php/champ_json.php");
+  var league_champ_data = httpGet("php/champ.php");
   var league_champ_jsonData = JSON.parse(champ_data);
 
   playingLeague = true;
