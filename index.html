@@ -17,23 +17,42 @@
 					<div class="well">
 						<h2><span class="fa fa-twitch" style="color:#6441A5;"> <span class="label" id="streaming"></span></h2>
 						<h4 id="stream_game"></h4>
-						<h6><a href="http://www.twitch.tv/malsf21" style="color:#6441A5;">Watch his stream @malsf21.</a></h6>
+						<h6><a href="http://www.twitch.tv/malsf21" style="color:#6441A5;">Watch his stream @malsf21</a></h6>
 					</div>
 				</div>
 				<div class="col-md-5">
 					<div class="well">
 						<h2><span class="fa fa-gamepad"> <span class="label" id="league"></span></h2>
 						<h4 id="league_info"></h4>
-						<h6>He's malsf21 on NA. He's currently <span style="color:silver">Silver I</span>.</h6>
+						<h6>malsf21 is currently <span style="color:silver">Silver I</span> on NA</h6>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="well">
+						<h2><span class="fa fa-steam"> <span class="label label-primary">Matt is online</span>
+						<h4>playing <span class="label label-success">Counter-Strike: Global Offensive</span></h4>
+						<!--<h6>He was last seen 6 hours ago.</h6>-->
 					</div>
 				</div>
 			</div>
-			<div class="jumbotron">
-				<h3>Want to know if Matt's playing league?</h3>
-				<h1 class="display-1"><span id="answer"></span></h1>
-				<h3 id="info">He's playing <span id="champ"></span> in a <span id="mode"></span> game.</h3>
-				<h2><span id="stream"></span> You can check out his stream on <a href="http://www.twitch.tv/malsf21">Twitch</a></h2>
-				<h4>He's malsf21 on the NA server. <a href="http://na.op.gg/summoner/userName=malsf21">Here's his op.gg</a></h4>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="well">
+						<h2><span class="fa fa-github"> <span class="label label-primary">Matt was on GitHub</span></h2>
+						<h4>editing the <span class="label label-info">status repository</span></h4>
+						<h6>at 4:20 PM, April 20th 2016</h6>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="well">
+						<h2><span class="fa fa-instagram"></span> <span class="label label-warning">Matt's Insta</span></h2>
+						<div style="text-align:center">
+							<img class="img-responsive img-thumbnail" src="https:\/\/scontent-ord1-1.cdninstagram.com\/t51.2885-15\/s150x150\/e35\/12783833_175421189506338_1700463373_n.jpg?ig_cache_key=MTIwMDMyOTA4MDIxNTA1OTU1NA%3D%3D.2"></img>
+						</div>
+						<h4>Outstanding burger #bmun64</h4>
+						<h6>Taken at 4:20 PM at the Melt</h6>
+					</div>
+				</div>
 			</div>
     </div>
   </body>
@@ -49,16 +68,16 @@
 			$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
 		}
 		else{
-			$("#streaming").html("Matt's Offline.");
+			$("#streaming").html("Matt's Offline");
 			$("#streaming").addClass("label-danger");
 		}
 		if (playingLeague === true){
-			$("#league").html("Matt's playing league!");
+			$("#league").html("Matt's playing League!");
 			$("#streaming").addClass("label-success");
 			$("#league_info").html("He's playing " + league_champ + " in a " + league_game_mode + " game.");
 		}
 		else{
-			$("#league").html("Matt isn't playing League.");
+			$("#league").html("Matt isn't playing League");
 			$("#league").addClass("label-danger");
 		}
 		if (playingLeague === true){
