@@ -40,7 +40,7 @@ $.ajax({
       console.log(league_summoner_jsonData);
 
       league_summoner_tier = league_summoner_jsonData['65443758'][0]["tier"];
-      league_summoner_division = league_summoner_jsonData['65443758'][0]["entries"]["division"];
+      league_summoner_division = league_summoner_jsonData['65443758'][0]["entries"][0]["division"];
       console.log(league_summoner_tier);
       console.log(league_summoner_division);
     },
