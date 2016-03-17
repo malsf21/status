@@ -29,7 +29,7 @@
 					<div class="well">
 						<h2><span class="fa fa-gamepad"> <span class="label" id="league"></span></h2>
 						<h4 id="league_info"></h4>
-						<h6>malsf21 is currently <span style="color:silver" id="rank"></span> on NA</h6>
+						<h6>malsf21 is currently <span id="rank"></span> on NA</h6>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -103,6 +103,7 @@
 				$("#league").addClass("label-danger");
 			}
 			$("#rank").html(league_summoner_tier + " " + league_summoner_division);
+			$("#league_info").attr("style", "color:" + league_summoner_tier);
 		}
 
 		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
