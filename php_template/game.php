@@ -12,7 +12,7 @@
     $info = curl_getinfo($ch);
     http_response_code($info["http_code"]);
     header("Access-Control-Allow-Origin: http://matthewwang.me");
-    print(json_encode($data, JSON_FORCE_OBJECT));
+    print($data);
     $new_data = [
       "time" => $current_time,
       "data" => $data

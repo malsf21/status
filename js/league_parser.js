@@ -1,6 +1,6 @@
 var league_game_data = httpGet("php/game.php?summonerid=65443758");
 var league_game_jsonData = JSON.parse(league_game_data);
-
+console.log(league_game_jsonData);
 var playingLeague = false;
 if (league_champ_jsonData["gameId"] != null){
   var league_champ_data = httpGet("php/champ.php");
