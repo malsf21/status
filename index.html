@@ -7,10 +7,20 @@
     <title>Status | By Matthew Wang</title>
 		<link rel="icon" href="css/favicon.ico" />
     <link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/font-awesome.css" />
   </head>
   <body>
 		<div class="container" style="padding-top:100px;">
 			<h1 class="page-header">What's Matt Doing Right Now?</h1>
+			<div class = "row">
+				<div class="col-md-3">
+					<div class="well">
+						<h2><span class="fa fa-twitch" style="color:#6441A5;"> <span class="label" id="streaming"></span></h2>
+						<h4 id="stream_game"></h4>
+						<h6><a href="http://www.twitch.tv/malsf21" style="color:#6441A5;">Watch his stream here.</a></h6>
+					</div>
+				</div>
+			</div>
 			<div class="jumbotron">
 				<h3>Want to know if Matt's playing league?</h3>
 				<h1 class="display-1"><span id="answer"></span></h1>
@@ -26,6 +36,15 @@
 	<script src="js/league_parser.js"></script>
 	<script src="js/twitch_parser.js"></script>
 	<script type="text/javascript">
+		if (streaming === true){
+			$("#streaming").html("Matt's Live!");
+			$("#streaming").addClass("label-success");
+			$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
+		}
+		else{
+			$("#streaming").html("Matt's Offline.");
+			$("#streaming").addClass("label-danger");
+		}
 		if (playingLeague === true){
 			$("#answer").html("Well he is.");
 			$("#stream").html("In fact, he's probably streaming right now!");
