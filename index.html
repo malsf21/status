@@ -17,7 +17,14 @@
 					<div class="well">
 						<h2><span class="fa fa-twitch" style="color:#6441A5;"> <span class="label" id="streaming"></span></h2>
 						<h4 id="stream_game"></h4>
-						<h6><a href="http://www.twitch.tv/malsf21" style="color:#6441A5;">Watch his stream here.</a></h6>
+						<h6><a href="http://www.twitch.tv/malsf21" style="color:#6441A5;">Watch his stream @malsf21.</a></h6>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="well">
+						<h2><span class="fa fa-gamepad"> <span class="label" id="league"></span></h2>
+						<h4 id="league_info"></h4>
+						<h6>He's malsf21 on NA. He's currently <span style="color:silver">Silver I</span>.</h6>
 					</div>
 				</div>
 			</div>
@@ -44,6 +51,15 @@
 		else{
 			$("#streaming").html("Matt's Offline.");
 			$("#streaming").addClass("label-danger");
+		}
+		if (playingLeague === true){
+			$("#league").html("Matt's playing league!");
+			$("#streaming").addClass("label-success");
+			$("#league_info").html("He's playing " + league_champ + " in a " + league_game_mode + " game.");
+		}
+		else{
+			$("#league").html("Matt isn't playing League.");
+			$("#league").addClass("label-danger");
 		}
 		if (playingLeague === true){
 			$("#answer").html("Well he is.");
