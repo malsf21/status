@@ -3,7 +3,7 @@ $.ajax({
     dataType: "json",
     success: function(league_game_jsonData) {
       console.log("true");
-      var league_champ_data = httpGet("php/champ.php");
+      var league_champ_data = httpGet("php/champion.php");
       var league_champ_jsonData = JSON.parse(league_champ_data);
       playingLeague = true;
       league_game_mode = "Custom/Unidentified";
