@@ -6,7 +6,7 @@ function httpGet(theUrl){
 }
 
 
-var data = httpGet("php/game_json.php");
+var data = httpGet("php/game_json.php?summonerid=65443758");
 var jsonData = JSON.parse(data);
 
 var mattPlaying = false;
