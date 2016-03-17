@@ -24,9 +24,10 @@ $.ajax({
       else if (league_game_type == 31 || league_game_type == 32 || league_game_type == 33){
         league_game_mode = "Bot";
       }
-      for (i = 0; i < league_game_jsonData["participants"].length; i++){
+      for (i = 0; i < 10; i++){
         if (jsonData['participants'][i]["summonerId"] == 65443758){
           var champid = jsonData['participants'][i]['championId'];
+          break;
         }
       }
       var league_champ = champ_jsonData["data"][String(champid)]["name"];
