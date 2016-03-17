@@ -31,10 +31,7 @@ $.ajax({
           break;
         }
       }
-      var league_champ = league_champ_jsonData["data"][champid]["name"];
-      console.log(champid);
-      console.log(league_champ);
-      console.log(league_champ_jsonData);
+      league_champ = league_champ_jsonData["data"][champid]["name"];
     },
     error: function(data) {
         var playingLeague = false;
