@@ -34,7 +34,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="well">
-						<h2><span class="fa fa-steam"> <span class="label label-primary">Matt's online</span>
+						<h2><span class="fa fa-steam"> <span class="label label-primary">Matt is online</span>
 						<h4>but isn't playing anything</h4>
 						<!--<h4>playing <span class="label label-success">Counter-Strike: Global Offensive</span></h4>-->
 						<!--<h6>He was last seen 6 hours ago.</h6>-->
@@ -76,16 +76,16 @@
 	<script src="js/github_parser.js"></script>
 	<script type="text/javascript">
 		if (streaming === true){
-			$("#streaming").html("Matt's Live!");
+			$("#streaming").html("Matt is Live!");
 			$("#streaming").addClass("label-success");
 			$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
 		}
 		else{
-			$("#streaming").html("Matt's Offline");
+			$("#streaming").html("Matt is Offline");
 			$("#streaming").addClass("label-danger");
 		}
 		if (playingLeague === true){
-			$("#league").html("Matt's playing League!");
+			$("#league").html("Matt is playing League!");
 			$("#streaming").addClass("label-success");
 			$("#league_info").html("He's playing " + league_champ + " in a " + league_game_mode + " game.");
 		}
