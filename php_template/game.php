@@ -1,6 +1,6 @@
 <?php
   $log_json = file_get_contents("game_log.json");
-  $log_data = json_decode($json, true);
+  $log_data = json_decode($log_json, true);
   $current_time = time();
   if ($current_time - $log_data["time"] >= 10){
     $apikey = "";
