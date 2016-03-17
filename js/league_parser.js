@@ -4,7 +4,7 @@ $.ajax({
     success: function(league_game_jsonData) {
       console.log("true");
       var league_champ_data = httpGet("php/champ.php");
-      var league_champ_jsonData = JSON.parse(champ_data);
+      var league_champ_jsonData = JSON.parse(league_champ_data);
       playingLeague = true;
       league_game_mode = "Custom/Unidentified";
       league_game_type = league_game_jsonData["gameQueueConfigId"];
