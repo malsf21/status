@@ -29,7 +29,7 @@
 					<div class="well">
 						<h2><span class="fa fa-gamepad"> <span class="label" id="league"></span></h2>
 						<h4 id="league_info"></h4>
-						<h6>malsf21 is currently <span style="color:silver">Silver I</span> on NA</h6>
+						<h6>malsf21 is currently <span style="color:silver" id="rank"></span> on NA</h6>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -89,6 +89,8 @@
 		var league_champ = "";
 		var league_game_mode = "";
 		var playingLeague = false;
+		var league_summoner_tier = "";
+		var league_summoner_division = "";
 
 		function leagueInfo(){
 			if (playingLeague === true){
@@ -100,6 +102,7 @@
 				$("#league").html("Matt isn't playing League");
 				$("#league").addClass("label-danger");
 			}
+			$("#rank").html(league_summoner_tier + " " + league_summoner_division);
 		}
 
 		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
