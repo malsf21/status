@@ -1,11 +1,11 @@
 $.ajax({
     url: 'php/game.php?summonerid=65443758',
     dataType: "json",
-    success: function(league_game_jsonData) {
+    success: function(league_game_league_game_jsonData) {
       console.log("true");
       playingLeague = true;
       league_game_mode = "Custom/Unidentified";
-      league_game_type = league_game_jsonData["gameQueueConfigId"];
+      league_game_type = league_game_league_game_jsonData["gameQueueConfigId"];
       if (league_game_type == 2){
         league_game_mode = "Blind Pick";
       }
@@ -24,13 +24,13 @@ $.ajax({
       else if (league_game_type == 31 || league_game_type == 32 || league_game_type == 33){
         league_game_mode = "Bot";
       }
-      for (i = 0; i < 10; i++){
-        if (jsonData['participants'][i]["summonerId"] == 65443758){
-          var champid = jsonData['participants'][i]['championId'];
+      for (i = 0; i < league_game_jsonData['participants'].length; i++){
+        if (league_game_jsonData['participants'][i]["summonerId"] == 65443758){
+          var champid = league_game_jsonData['participants'][i]['championId'];
           break;
         }
       }
-      var league_champ = champ_jsonData["data"][String(champid)]["name"];
+      var league_champ = champ_league_game_jsonData["data"][String(champid)]["name"];
     },
     error: function(data) {
         var playingLeague = false;
@@ -41,16 +41,16 @@ leagueInfo();
 
 /*
 var league_game_data = httpGet("php/game.php?summonerid=65443758");
-var league_game_jsonData = JSON.parse(league_game_data);
-console.log(league_game_jsonData);
+var league_game_league_game_jsonData = JSON.parse(league_game_data);
+console.log(league_game_league_game_jsonData);
 var playingLeague = false;
-if (league_champ_jsonData["gameId"] != null){
+if (league_champ_league_game_jsonData["gameId"] != null){
   var league_champ_data = httpGet("php/champ.php");
-  var league_champ_jsonData = JSON.parse(champ_data);
+  var league_champ_league_game_jsonData = JSON.parse(champ_data);
 
   playingLeague = true;
   var league_game_mode = "Custom/Unidentified";
-  league_game_type = league_game_jsonData["gameQueueConfigId"];
+  league_game_type = league_game_league_game_jsonData["gameQueueConfigId"];
   if (league_game_type == 2){
     league_game_mode = "Blind Pick";
   }
@@ -69,11 +69,11 @@ if (league_champ_jsonData["gameId"] != null){
   else if (league_game_type == 31 || league_game_type == 32 || league_game_type == 33){
     league_game_mode = "Bot";
   }
-  for (i = 0; i < jsonData["participants"].length; i++){
-    if (jsonData['participants'][i]["summonerId"] == 65443758){
-      var champid = jsonData['participants'][i]['championId'];
+  for (i = 0; i < league_game_jsonData["participants"].length; i++){
+    if (league_game_jsonData['participants'][i]["summonerId"] == 65443758){
+      var champid = league_game_jsonData['participants'][i]['championId'];
     }
   }
-  var league_champ = champ_jsonData["data"][String(champid)]["name"];
+  var league_champ = champ_league_game_jsonData["data"][String(champid)]["name"];
 }
 */
