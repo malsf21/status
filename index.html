@@ -14,6 +14,56 @@
 			}
 		</style>
   </head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+	<script src="js/structure.js"></script>
+	<script src="js/twitch_parser.js"></script>
+	<script src="js/github_parser.js"></script>
+	<script type="text/javascript">
+
+
+		if (streaming === true){
+			$("#streaming").html("Matt is Live!");
+			$("#streaming").addClass("label-success");
+			$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
+		}
+		else{
+			$("#streaming").html("Matt is Offline");
+			$("#streaming").addClass("label-danger");
+		}
+
+		var league_champ = "";
+		var league_game_mode = "";
+		var playingLeague = false;
+
+		function leagueInfo(){
+			if (playingLeague === true){
+				$("#league").html("Matt is playing League!");
+				$("#streaming").addClass("label-success");
+				$("#league_info").html("He's playing " + league_champ + " in a " + league_game_mode + " game.");
+			}
+			else{
+				$("#league").html("Matt isn't playing League");
+				$("#league").addClass("label-danger");
+			}
+		}
+
+		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
+		$("#github_time").html(github_time);
+
+		var instagram_date = "";
+		var instagram_caption = "";
+		var instagram_location = "";
+
+		function instaInfo(){
+			$("#instagram_caption").html(instagram_caption);
+			$("#instagram_info").html(instagram_date + " at " + instagram_location);
+			$("#instagram_pic").attr("src", instagram_photo);
+		}
+
+	</script>
+	<script src="js/league_parser.js"></script>
+	<script src="js/instagram_parser.js"></script>
   <body>
 		<div class="container">
 			<h1 class="page-header">What's Matt Doing Right Now?</h1>
@@ -68,54 +118,4 @@
 			</div>
     </div>
   </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-	<script src="js/structure.js"></script>
-	<script src="js/twitch_parser.js"></script>
-	<script src="js/github_parser.js"></script>
-	<script type="text/javascript">
-
-
-		if (streaming === true){
-			$("#streaming").html("Matt is Live!");
-			$("#streaming").addClass("label-success");
-			$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
-		}
-		else{
-			$("#streaming").html("Matt is Offline");
-			$("#streaming").addClass("label-danger");
-		}
-
-		var league_champ = "";
-		var league_game_mode = "";
-		var playingLeague = false;
-
-		function leagueInfo(){
-			if (playingLeague === true){
-				$("#league").html("Matt is playing League!");
-				$("#streaming").addClass("label-success");
-				$("#league_info").html("He's playing " + league_champ + " in a " + league_game_mode + " game.");
-			}
-			else{
-				$("#league").html("Matt isn't playing League");
-				$("#league").addClass("label-danger");
-			}
-		}
-
-		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
-		$("#github_time").html(github_time);
-
-		var instagram_date = "";
-		var instagram_caption = "";
-		var instagram_location = "";
-
-		function instaInfo(){
-			$("#instagram_caption").html(instagram_caption);
-			$("#instagram_info").html(instagram_date + " at " + instagram_location);
-			$("#instagram_pic").attr("src", instagram_photo);
-		}
-
-	</script>
-	<script src="js/league_parser.js"></script>
-	<script src="js/instagram_parser.js"></script>
 </html>
