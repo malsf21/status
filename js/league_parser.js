@@ -34,7 +34,11 @@ $.ajax({
         }
       }
       league_champ = league_champ_jsonData["data"][champid]["name"];
-
+    },
+    error: function(data) {
+        var playingLeague = false;
+    },
+    complete: function(xhr, data) {
       var league_summoner_data = httpGet("php/summoner.php");
       var league_summoner_jsonData = JSON.parse(league_summoner_data);
       console.log(league_summoner_jsonData);
@@ -43,11 +47,6 @@ $.ajax({
       league_summoner_division = league_summoner_jsonData['65443758'][0]["entries"][0]["division"];
       console.log(league_summoner_tier);
       console.log(league_summoner_division);
-    },
-    error: function(data) {
-        var playingLeague = false;
-    },
-    complete: function(xhr, data) {
-        leagueInfo();
+      leagueInfo();
     }
 });
