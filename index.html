@@ -12,6 +12,10 @@
 			.label a{
 				color:white;
 			}
+			.scroller{
+				overflow-y: scroll;
+				height: 250px;
+			}
 		</style>
   </head>
   <body>
@@ -77,7 +81,7 @@
 					<div class="well">
 						<h2><span class="label label-primary">Matt's Blog</span></h2>
 						<div class="scroller">
-
+							<ol class="blog-list"></ol>
 						</div>
 					</div>
 				</div>
@@ -141,7 +145,7 @@
 			$("#instagram_pic").attr("src", instagram_photo);
 		}
 
-		$(".scroller").load("../blog .post-list");
+		$(".blog-list").load("../blog .post-list li");
 
 	</script>
 	<script src="js/league_parser.js"></script>
