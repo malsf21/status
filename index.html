@@ -76,6 +76,9 @@
 				<div class="col-md-8">
 					<div class="well">
 						<h2><span class="label label-primary">Matt's Blog</span></h2>
+						<div class="scroller">
+
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -88,14 +91,13 @@
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	<script>
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 	<script src="js/structure.js"></script>
 	<script src="js/twitch_parser.js"></script>
 	<script src="js/github_parser.js"></script>
 	<script type="text/javascript">
-
-
 		if (streaming === true){
 			$("#streaming").html("Matt is Live!");
 			$("#streaming").addClass("label-success");
@@ -138,6 +140,8 @@
 			$("#instagram_info").html(instagram_date + " at " + instagram_location);
 			$("#instagram_pic").attr("src", instagram_photo);
 		}
+
+		$(".scroller").load("../blog .post-list");
 
 	</script>
 	<script src="js/league_parser.js"></script>
