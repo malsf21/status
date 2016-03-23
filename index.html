@@ -41,10 +41,8 @@
 				</div>
 				<div class="col-md-4">
 					<div class="well">
-						<h2><span class="fa fa-steam"> <span class="label label-primary">Matt is online</span>
-						<h4>but isn't playing anything</h4>
-						<!--<h4>playing <span class="label label-success">Counter-Strike: Global Offensive</span></h4>-->
-						<!--<h6>He was last seen 6 hours ago.</h6>-->
+						<h2><span class="fa fa-steam"> <span class="label" id="steam"></span>
+						<div id="steam_info"></div>
 					</div>
 				</div>
 			</div>
@@ -121,6 +119,22 @@
 		var playingLeague = false;
 		var league_summoner_tier = "";
 		var league_summoner_division = "";
+
+		if (steam_playing == 0){
+			$("#steam").html("Matt is Offline.");
+			$("#steam").addClass("label-danger");
+			$("#steam_info").html("<h6>Matt was last seen at " + steam_logoff + "</h6>");
+		}
+		else if (steam_playing == 1){
+			$("#steam").html("Matt is " + steam_status + ".");
+			$("#steam").addClass("label-primary");
+			$("#steam_info").html("<h6>but he isn't playing anything</h6>");
+		}
+		else{
+			$("#steam").html("Matt is " + steam_status + ".");
+			$("#steam").addClass("label-success");
+			$("#steam_info").html("<h4>playing <span class='label label-info'>" + steam_game + "</span></h4>");
+		}
 
 		function leagueInfo(){
 			if (playingLeague === true){
