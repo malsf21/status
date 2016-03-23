@@ -11,31 +11,36 @@ $.ajax({
       league_game_type = league_game_jsonData["gameQueueConfigId"];
       console.log(league_game_type);
       console.log(league_game_jsonData);
-      if (league_game_type == 2){
-        league_game_mode = "Blind Pick";
+      if ("status" in league_game_jsonData){
+        var playingLeague = false;
       }
-      else if (league_game_type == 14){
-        league_game_mode = "Normal Draft";
-      }
-      else if (league_game_type == 4){
-        league_game_mode = "Ranked";
-      }
-      else if (league_game_type == 41){
-        league_game_mode = "Ranked 3v3";
-      }
-      else if (league_game_type == 65){
-        league_game_mode = "ARAM";
-      }
-      else if (league_game_type == 31 || league_game_type == 32 || league_game_type == 33){
-        league_game_mode = "Bot";
-      }
-      for (i = 0; i < 10; i++){
-        if (league_game_jsonData['participants'][i]["summonerId"] == 65443758){
-          var champid = league_game_jsonData['participants'][i]['championId'];
-          break;
+      else{
+        if (league_game_type == 2){
+          league_game_mode = "Blind Pick";
         }
+        else if (league_game_type == 14){
+          league_game_mode = "Normal Draft";
+        }
+        else if (league_game_type == 4){
+          league_game_mode = "Ranked";
+        }
+        else if (league_game_type == 41){
+          league_game_mode = "Ranked 3v3";
+        }
+        else if (league_game_type == 65){
+          league_game_mode = "ARAM";
+        }
+        else if (league_game_type == 31 || league_game_type == 32 || league_game_type == 33){
+          league_game_mode = "Bot";
+        }
+        for (i = 0; i < 10; i++){
+          if (league_game_jsonData['participants'][i]["summonerId"] == 65443758){
+            var champid = league_game_jsonData['participants'][i]['championId'];
+            break;
+          }
+        }
+        league_champ = league_champ_jsonData["data"][champid]["name"];
       }
-      league_champ = league_champ_jsonData["data"][champid]["name"];
     },
     error: function(data) {
         var playingLeague = false;
