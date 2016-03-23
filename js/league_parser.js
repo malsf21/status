@@ -1,7 +1,9 @@
 $.ajax({
     url: 'php/game.php?summonerid=65443758',
     dataType: "json",
-    success: function(league_game_jsonData) {
+    success: function(league_game_data) {
+
+      var league_game_jsonData = JSON.parse(league_game_data);
 
       var league_champ_data = httpGet("php/champion.php");
       var league_champ_jsonData = JSON.parse(league_champ_data);
