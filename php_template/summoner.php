@@ -4,7 +4,8 @@
   $current_time = time();
   if ($current_time - $log_data["time"] >= 30){
     $apikey = "";
-    $url = "https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/65443758/entry?api_key=".$apikey;
+    $summonerid = $_GET["summonerid"];
+    $url = "https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/".$summonerid."/entry?api_key=".$apikey;
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $data = curl_exec($ch);

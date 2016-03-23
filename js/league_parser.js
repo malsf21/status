@@ -41,7 +41,7 @@ $.ajax({
         var playingLeague = false;
     },
     complete: function(xhr, data) {
-      var league_summoner_data = httpGet("php/summoner.php");
+      var league_summoner_data = httpGet("php/summoner.php?summonerid=65443758");
       var league_summoner_jsonData = JSON.parse(league_summoner_data);
 
       league_summoner_tier = league_summoner_jsonData['65443758'][0]["tier"];
