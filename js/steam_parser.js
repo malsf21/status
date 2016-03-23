@@ -6,8 +6,11 @@ var steam_state = steam_data["response"]["players"][0]["personastate"];
 var steam_status = steam_states[steam_state];
 var steam_playing = 0;
 if (steam_state == 0){
-  var steam_logoff_unix = new Date(Date.parse(steam_data["response"]["players"][0]["lastlogoff"]));
+  var steam_logoff_unix = new Date(Date.parse(Number(steam_data["response"]["players"][0]["lastlogoff"])));
   var steam_logoff = "at " + String(steam_logoff_unix).substring(16,21) + " " + steam_logoff_unix.toDateString();
+  console.log(steam_data["response"]["players"][0]["lastlogoff"])
+  console.log(steam_logoff_unix);
+  console.log(steam_logoff);
 }
 else{
   console.log("Online");
@@ -19,5 +22,3 @@ else{
     steam_playing = 1;
   }
 }
-console.log(steam_data);
-console.log(steam_status);
