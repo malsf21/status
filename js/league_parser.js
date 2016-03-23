@@ -11,8 +11,6 @@ $.ajax({
       playingLeague = true;
       league_game_mode = "Custom/Unidentified";
       league_game_type = league_game_jsonData["gameQueueConfigId"];
-      console.log(league_game_type);
-      console.log(league_game_jsonData);
       if ("status" in league_game_jsonData){
         var playingLeague = false;
       }
