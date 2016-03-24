@@ -18,8 +18,10 @@ function leagueFetch(summonerid){
         playingLeague = true;
         league_game_mode = "Custom/Unidentified";
         league_game_type = league_game_jsonData["gameQueueConfigId"];
+        console.log(league_game_type);
+        console.log(league_game_jsonData);
         if ("status" in league_game_jsonData){
-          var playingLeague = false;
+          playingLeague = false;
         }
         else{
           if (league_game_type == 2){
@@ -50,7 +52,7 @@ function leagueFetch(summonerid){
         }
       },
       error: function(data) {
-          var playingLeague = false;
+          playingLeague = false;
       },
       complete: function(xhr, data) {
         var league_summoner_data = httpGet("php/summoner.php?summonerid="+summonerid);
