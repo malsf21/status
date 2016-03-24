@@ -21,4 +21,5 @@ function steamFetch(steamid){
       steam_playing = 1;
     }
   }
+  steamInfo();
 }

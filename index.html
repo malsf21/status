@@ -106,33 +106,34 @@
 	<script src="js/github_parser.js"></script>
 	<script src="js/instagram_parser.js"></script>
 	<script type="text/javascript">
-		twitchFetch("malsf21");
-		if (streaming === true){
-			$("#streaming").html("Matt is Live!");
-			$("#streaming").addClass("label-success");
-			$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
+		function twitchInfo(){
+			if (streaming === true){
+				$("#streaming").html("Matt is Live!");
+				$("#streaming").addClass("label-success");
+				$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
+			}
+			else{
+				$("#streaming").html("Matt is Offline");
+				$("#streaming").addClass("label-danger");
+			}
 		}
-		else{
-			$("#streaming").html("Matt is Offline");
-			$("#streaming").addClass("label-danger");
+		function steamInfo(){
+			if (steam_playing == 0){
+				$("#steam").html("Matt is Offline.");
+				$("#steam").addClass("label-danger");
+				$("#steam_info").html("<h6>Matt was last seen at " + steam_logoff + "</h6>");
+			}
+			else if (steam_playing == 1){
+				$("#steam").html("Matt is " + steam_status + ".");
+				$("#steam").addClass("label-primary");
+				$("#steam_info").html("<h6>but he isn't playing anything</h6>");
+			}
+			else{
+				$("#steam").html("Matt is " + steam_status + ".");
+				$("#steam").addClass("label-success");
+				$("#steam_info").html("<h4>playing <span class='label label-info'>" + steam_game + "</span></h4>");
+			}
 		}
-		steamFetch("76561198110942970");
-		if (steam_playing == 0){
-			$("#steam").html("Matt is Offline.");
-			$("#steam").addClass("label-danger");
-			$("#steam_info").html("<h6>Matt was last seen at " + steam_logoff + "</h6>");
-		}
-		else if (steam_playing == 1){
-			$("#steam").html("Matt is " + steam_status + ".");
-			$("#steam").addClass("label-primary");
-			$("#steam_info").html("<h6>but he isn't playing anything</h6>");
-		}
-		else{
-			$("#steam").html("Matt is " + steam_status + ".");
-			$("#steam").addClass("label-success");
-			$("#steam_info").html("<h4>playing <span class='label label-info'>" + steam_game + "</span></h4>");
-		}
-		leagueFetch("65443758");
 		function leagueInfo(){
 			if (playingLeague === true){
 				$("#league").html("Matt is playing League!");
@@ -146,16 +147,22 @@
 			$("#rank").html(league_summoner_tier + " " + league_summoner_division);
 			$("#rank").attr("style", "color:" + league_summoner_tier);
 		}
-
-		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
-		$("#github_time").html(github_time);
-
-		instagramFetch("nonotthatmatthewwang");
 		function instaInfo(){
 			$("#instagram_caption").html(instagram_caption);
 			$("#instagram_info").html(instagram_date + " at " + instagram_location);
 			$("#instagram_pic").attr("src", instagram_photo);
 		}
+
+		twitchFetch("malsf21");
+		steamFetch("76561198110942970");
+		leagueFetch("65443758");
+		githubFetch("malsf21");
+		instagramFetch("nonotthatmatthewwang");
+
+		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
+		$("#github_time").html(github_time);
+
+		instagramFetch("nonotthatmatthewwang");
 
 		$(".blog-list").load("../blog/link_feed.html #link-feed li");
 

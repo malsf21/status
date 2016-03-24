@@ -7,4 +7,5 @@ function twitchFetch(twitchUser){
     streaming = true;
     var stream_game = stream_data["stream"]["game"];
   }
+  twitchInfo();
 }
