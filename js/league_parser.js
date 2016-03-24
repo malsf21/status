@@ -1,3 +1,9 @@
+var league_champ = "";
+var league_game_mode = "";
+var playingLeague = false;
+var league_summoner_tier = "";
+var league_summoner_division = "";
+
 $.ajax({
     url: 'php/game.php?summonerid=65443758',
     dataType: "json",

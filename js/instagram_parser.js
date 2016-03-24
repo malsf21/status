@@ -1,3 +1,9 @@
+var instagram_date = "";
+var instagram_caption = "";
+var instagram_location = "";
+var instagram_photo = "";
+
+
 function instagramFetch(username){
   $.ajax({
       url: "http://whateverorigin.org/get?url=" + encodeURIComponent("http://instagram.com/" + username + "/media"),
