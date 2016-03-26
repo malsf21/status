@@ -100,12 +100,17 @@
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 	<script src="js/structure.js"></script>
+	<script src="js/user.js"></script>
 	<script src="js/league_parser.js"></script>
 	<script src="js/steam_parser.js"></script>
 	<script src="js/twitch_parser.js"></script>
 	<script src="js/github_parser.js"></script>
 	<script src="js/instagram_parser.js"></script>
 	<script type="text/javascript">
+
+		matt = new User(true,true,true,true,true);
+		matt.setAll("malsf21", "76561198110942970", "65443758", "malsf21", "nonotthatmatthewwang", "malsf21");
+
 		function twitchInfo(){
 			if (streaming === true){
 				$("#streaming").html("Matt is Live!");
@@ -126,7 +131,7 @@
 			else if (steam_playing == 1){
 				$("#steam").html("Matt is " + steam_status + ".");
 				$("#steam").addClass("label-primary");
-				$("#steam_info").html("<h6>but he isn't playing anything</h6>");
+				$("#steam_info").html("<h6>but isn't playing anything</h6>");
 			}
 			else{
 				$("#steam").html("Matt is " + steam_status + ".");
@@ -138,7 +143,7 @@
 			if (playingLeague === true){
 				$("#league").html("Matt is playing League!");
 				$("#league").addClass("label-success");
-				$("#league_info").html("He's playing " + league_champ + " in a " + league_game_mode + " game.");
+				$("#league_info").html("Currently playing " + league_champ + " in a " + league_game_mode + " game.");
 			}
 			else{
 				$("#league").html("Matt isn't playing League");
@@ -153,18 +158,16 @@
 			$("#instagram_pic").attr("src", instagram_photo);
 		}
 
-		twitchFetch("malsf21");
-		steamFetch("76561198110942970");
-		leagueFetch("65443758");
-		githubFetch("malsf21");
-		instagramFetch("nonotthatmatthewwang");
-
 		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
 		$("#github_time").html(github_time);
 
-		instagramFetch("nonotthatmatthewwang");
-
 		$(".blog-list").load("../blog/link_feed.html #link-feed li");
+
+		twitchFetch(matt.getTwitch());
+		steamFetch(matt.getSteam());
+		leagueFetch(matt.getLeague());
+		githubFetch(matt.getGithub());
+		instagramFetch(matt.getInstagram());
 
 	</script>
 </html>
