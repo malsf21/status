@@ -88,7 +88,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="well">
-						<a class="twitter-timeline" href="https://twitter.com/malsf21" data-widget-id="711315053216186371">Tweets by @malsf21</a>
+						<a class="twitter-timeline" href="https://twitter.com/malsf21" data-widget-id="711315053216186371">Tweets by @<span id="twitter_username"></span></a>
 					</div>
 				</div>
 			</div>
@@ -159,13 +159,20 @@
 			$("#instagram_pic").attr("src", instagram_photo);
 		}
 
+		function twitterInfo(twitterUsername){
+			$("#twitter_username").html(twitterUsername);
+			$(".twitter-timeline").attr("data-screen-name", twitterUsername);
+			$(".twitter-timeline").attr("href", "http://twitter.com/" + twitterUsername);
+		}
+
 		function githubInfo(){
 			$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
 			$("#github_time").html(github_time);
 		}
 
-		$(".blog-list").load("../blog/link_feed.html #link-feed li");
 
+		$(".blog-list").load("../blog/link_feed.html #link-feed li");
+		twitterInfo(currentUser.getTwitter());
 		twitchFetch(currentUser.getTwitch());
 		steamFetch(currentUser.getSteam());
 		leagueFetch(currentUser.getLeague());
