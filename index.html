@@ -158,8 +158,10 @@
 			$("#instagram_pic").attr("src", instagram_photo);
 		}
 
-		$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
-		$("#github_time").html(github_time);
+		function githubInfo(){
+			$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
+			$("#github_time").html(github_time);
+		}
 
 		$(".blog-list").load("../blog/link_feed.html #link-feed li");
 
