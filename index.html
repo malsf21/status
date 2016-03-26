@@ -110,6 +110,7 @@
 
 		matt = new User(true,true,true,true,true);
 		matt.setAll("malsf21", "76561198110942970", "65443758", "malsf21", "nonotthatmatthewwang", "malsf21");
+		currentUser = matt;
 
 		function twitchInfo(){
 			if (streaming === true){
@@ -165,11 +166,11 @@
 
 		$(".blog-list").load("../blog/link_feed.html #link-feed li");
 
-		twitchFetch(matt.getTwitch());
-		steamFetch(matt.getSteam());
-		leagueFetch(matt.getLeague());
-		githubFetch(matt.getGithub());
-		instagramFetch(matt.getInstagram());
+		twitchFetch(currentUser.getTwitch());
+		steamFetch(currentUser.getSteam());
+		leagueFetch(currentUser.getLeague());
+		githubFetch(currentUser.getGithub());
+		instagramFetch(currentUser.getInstagram());
 
 	</script>
 </html>
