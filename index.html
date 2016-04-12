@@ -8,176 +8,20 @@
 		<link rel="icon" href="css/favicon.ico" />
     <link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/font-awesome.css" />
-		<style>
-			.label a{
-				color:white;
-			}
-			.scroller{
-				overflow-y: scroll;
-				height: 200px;
-			}
-			.blog-list{
-				list-style: none;
-			}
-		</style>
   </head>
   <body>
-		<div class="container">
-			<h1 class="page-header">What's Matt Doing Right Now?</h1>
-			<div class = "row">
-				<div class="col-md-3">
-					<div class="well">
-						<h2><a href="http://www.twitch.tv/malsf21"><span class="fa fa-twitch" style="color:#6441A5;"></span></a> <span class="label" id="streaming"></span></h2>
-						<h4 id="stream_game"></h4>
-						<h6><a href="http://www.twitch.tv/malsf21" style="color:#6441A5;">Watch his stream @malsf21</a></h6>
-					</div>
-				</div>
-				<div class="col-md-5">
-					<div class="well">
-						<h2><span class="fa fa-gamepad"> <span class="label" id="league"></span></h2>
-						<h4 id="league_info"></h4>
-						<h6>malsf21 is currently <span id="rank"></span> on NA</h6>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="well">
-						<h2><span class="fa fa-steam"> <span class="label" id="steam"></span>
-						<div id="steam_info"></div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="well">
-						<h2><span class="fa fa-github"> <span class="label label-primary"><a href="http://github.com/malsf21">Matt was on GitHub</a></span></h2>
-						<h4>editing the <span class="label label-info" id="repo"></span></h4>
-						<h6 id="github_time"></h6>
-					</div>
-				</div>
-				<div class="col-md-5">
-					<div class="well">
-						<div class="row">
-							<div class="col-md-6">
-								<h2><span class="fa fa-instagram"></span> <span class="label label-warning"><a href="https://www.instagram.com/nonotthatmatthewwang/">Matt's Pics</a></span></h2>
-								<h5 id="instagram_caption"></h5>
-								<h6 id="instagram_info"></h6>
-							</div>
-							<div class="col-md-6">
-								<a href="https://www.instagram.com/nonotthatmatthewwang/">
-									<img class="img-responsive img-thumbnail" src="" alt="loading..." id="instagram_pic"></img>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="well">
-						<h3><span class="fa fa-cogs"></span> <span class="label label-success">Source Code?</span></h3>
-						<h5>Source code is more than just a movie. Head over <a href="http://github.com/malsf21/status">here</a> to see how the magic happens <span class="fa fa-magic"></span></h5>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8">
-					<div class="well">
-						<h2><span class="label label-primary">Matt's Blog</span></h2>
-						<div class="scroller">
-							<ol class="blog-list"></ol>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="well">
-						<a class="twitter-timeline" href="https://twitter.com/malsf21" data-widget-id="711315053216186371">Tweets by @<span id="twitter_username"></span></a>
-					</div>
-				</div>
-			</div>
+    <div class="container" style="padding-top:10px;">
+      <div class="jumbotron">
+        <h1 class="page-header">Hey there, this is Status.</h1>
+        <h3>Status is a set of tools that lets you find out what people are doing</h3>
+        <h3>Here's what I've made so far:</h3>
+        <h4><a href="matt.html"><span class="fa fa-user"></span> My Status</a></h4>
+
+        <h3>Here's what I'm working on:</h3>
+        <h4><span class="fa fa-gamepad"></span> League Streamer Status</h4>
+      </div>
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-	<script>
-		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script>
-	<script src="js/structure.js"></script>
-	<script src="js/user.js"></script>
-	<script src="js/league_parser.js"></script>
-	<script src="js/steam_parser.js"></script>
-	<script src="js/twitch_parser.js"></script>
-	<script src="js/github_parser.js"></script>
-	<script src="js/instagram_parser.js"></script>
-	<script type="text/javascript">
-
-		matt = new User(true,true,true,true,true);
-		matt.setAll("malsf21", "76561198110942970", "65443758", "malsf21", "nonotthatmatthewwang", "malsf21");
-		currentUser = matt;
-
-		function twitchInfo(){
-			if (streaming === true){
-				$("#streaming").html("Matt is Live!");
-				$("#streaming").addClass("label-success");
-				$("#stream_game").html("playing <span class='label label-info'>" + stream_game + "</span>");
-			}
-			else{
-				$("#streaming").html("Matt is Offline");
-				$("#streaming").addClass("label-danger");
-			}
-		}
-		function steamInfo(){
-			if (steam_playing == 0){
-				$("#steam").html("Matt is Offline.");
-				$("#steam").addClass("label-danger");
-				$("#steam_info").html("<h6>Matt was last seen at " + steam_logoff + "</h6>");
-			}
-			else if (steam_playing == 1){
-				$("#steam").html("Matt is " + steam_status + ".");
-				$("#steam").addClass("label-primary");
-				$("#steam_info").html("<h6>but isn't playing anything</h6>");
-			}
-			else{
-				$("#steam").html("Matt is " + steam_status + ".");
-				$("#steam").addClass("label-success");
-				$("#steam_info").html("<h4>playing <span class='label label-info'>" + steam_game + "</span></h4>");
-			}
-		}
-		function leagueInfo(){
-			if (playingLeague === true){
-				$("#league").html("Matt is playing League!");
-				$("#league").addClass("label-success");
-				$("#league_info").html("Currently playing " + league_champ + " in a " + league_game_mode + " game.");
-			}
-			else{
-				$("#league").html("Matt isn't playing League");
-				$("#league").addClass("label-danger");
-			}
-			$("#rank").html(league_summoner_tier + " " + league_summoner_division);
-			$("#rank").attr("style", "color:" + league_summoner_tier);
-		}
-		function instaInfo(){
-			$("#instagram_caption").html(instagram_caption);
-			$("#instagram_info").html(instagram_date + " at " + instagram_location);
-			$("#instagram_pic").attr("src", instagram_photo);
-		}
-
-		function twitterInfo(twitterUsername){
-			$("#twitter_username").html(twitterUsername);
-			$(".twitter-timeline").attr("data-screen-name", twitterUsername);
-			$(".twitter-timeline").attr("href", "http://twitter.com/" + twitterUsername);
-		}
-
-		function githubInfo(){
-			$("#repo").html("<a href='https://github.com/malsf21?tab=repositories'>" + github_repo + " repository</a>");
-			$("#github_time").html(github_time);
-		}
-
-
-		$(".blog-list").load("../blog/link_feed.html #link-feed li");
-		twitterInfo(currentUser.getTwitter());
-		twitchFetch(currentUser.getTwitch());
-		steamFetch(currentUser.getSteam());
-		leagueFetch(currentUser.getLeague());
-		githubFetch(currentUser.getGithub());
-		instagramFetch(currentUser.getInstagram());
-
-	</script>
 </html>
