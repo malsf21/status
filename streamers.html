@@ -178,9 +178,7 @@
     var cookieSet = Cookies.get();
 		console.log(cookieSet);
     if ("streamerData" in cookieSet){
-      var streamerData = Cookies.get("streamerData");
-			streamerData = JSON.parse("streamerData");
-			//streamerData = streamerData.replace(/\\/g, "");
+      var streamerData = Cookies.getJSON("streamerData").replace(/\\/g, "");
       var userUsername = streamerData["username"];
       $('.username').html(" " + userUsername);
       var streamerListData = {};
