@@ -83,7 +83,7 @@
                     <h4>TSM_Dyrus</h4>
                   </div>
                   <div class="col-sm-3" style="color:white;text-align:right;">
-                    <button class="btn btn-danger"><span class="fa fa-remove"></span></button>
+                    <button class="btn btn-danger list-close"><span class="fa fa-remove"></span></button>
                   </div>
                 </div>
               </div>
@@ -107,6 +107,11 @@
   <script>
 
     var template = {"username" : "Matt","lastlogin" : 0, "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"},"Dyrus" : {"name" : "Dyrus", "twitch" : "TSM_Dyrus"}}};
+
+    $(document).on('click', '.list-close', function () {
+      $(this).parents('div.panel').fadeOut();
+    });
+
     function submitCreate(){
       var username = $('#create-name').val();
       makeCookie(username);
@@ -155,6 +160,7 @@
         }
       }
     }
+
     var cookieSet = Cookies.get();
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
