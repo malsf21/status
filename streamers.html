@@ -13,7 +13,7 @@
     <div class="container" style="padding-top:10px;">
       <div class="jumbotron">
         <h1 class="page-header">Status: Streamers</h1>
-        <h3>What are your favourite streamers doing?</h3>
+        <h3>Hey<span class="username"></span>! Let's take a look at your favourite streamers.</h3>
 
       </div>
     </div>
@@ -55,8 +55,9 @@
     var cookieSet = Cookies.get();
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
-      console.log(streamerData["lastlogin"]);
-      console.log(streamerData["username"]);
+      //console.log(streamerData["lastlogin"]);
+      //console.log(streamerData["username"]);
+      $('.username').html(streamerData["username"]);
     }
     else{
       $('#createUserModal').modal('show');
