@@ -12,8 +12,17 @@
   <body>
     <div class="container" style="padding-top:10px;">
       <div class="jumbotron">
-        <h1 class="page-header">Status : Streamers <small><a href="http://twitch.tv"><span class="fa fa-twitch" style="color:purple;"></span></a></small></h1>
-        <h3>Hey<span class="username"></span>! <small>Let's take a look at your favourite streamers.</small></h3>
+        <div class="row">
+          <div class="col-md-9">
+            <h1 class="page-header">Status : Streamers <small><a href="http://twitch.tv"><span class="fa fa-twitch" style="color:purple;"></span></a></small></h1>
+            <h3>Hey<span class="username"></span>! <small>Let's take a look at your favourite streamers.</small></h3>
+          </div>
+          <div class="col-md-3">
+            <h4><button class="btn btn-block btn-primary" style="text-align:left;"><span class="fa fa-search"></span> Browse Profiles</button></h4>
+            <h4><button class="btn btn-block btn-success" style="text-align:left;" data-toggle="modal" data-target="#editUserModal"><span class="fa fa-pencil"></span> Edit User Profile</button></h4>
+            <h4><button class="btn btn-block btn-danger" style="text-align:left;"><span class="fa fa-remove"></span> Delete User Profile</button></h4>
+          </div>
+        </div>
       </div>
       <div class="row" id="streamer-container">
       </div>
@@ -38,6 +47,57 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="editUserModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Edit User Profile</h2>
+          </div>
+          <div class="modal-body">
+            <h3>Hey <span class="username">there</span>!</h3>
+            <p>If you want to edit the streamers that show up, you can add or remove them here!</p>
+            <form method="post" onsubmit="submitCreate()">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <input type="text" id="new-streamer-name" name="new-streamer-name" class="form-control" required="" placeholder="Name">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" id="new-streamer-twitch" name="new-streamer-name" class="form-control" required="" placeholder="Twitch Username">
+                    </div>
+                    <div class="col-sm-3" style="color:white;text-align:right;">
+                      <button class="btn btn-success"><span class="fa fa-plus"></span></button> <button class="btn btn-danger"><span class="fa fa-ban"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-3" style="text-align:center;">
+                    <h4>Dyrus</h4>
+                  </div>
+                  <div class="col-sm-5" style="text-align:center;">
+                    <h4>TSM_Dyrus</h4>
+                  </div>
+                  <div class="col-sm-3" style="color:white;text-align:right;">
+                    <button class="btn btn-danger"><span class="fa fa-remove"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <form method="post" onsubmit="submitCreate()">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -55,6 +115,10 @@
     function makeCookie(username){
       var current_time = new Date();
       Cookies.set("streamerData", template/*{"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}*//*,10000*/);
+    }
+    function updateCookie(username,dataset){
+      var current_time = new Date();
+      Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : dataset}/*,10000*/);
     }
     function buildStreams(streamers,container){
       var counter = 0;
