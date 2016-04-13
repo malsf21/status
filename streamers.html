@@ -46,7 +46,7 @@
   <script src="js/twitch_parser.js"></script>
   <script>
 
-    var template = {"username" : "Matt","lastlogin" : 0, "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}};
+    var template = {"username" : "Matt","lastlogin" : 0, "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"},"Dyrus" : {"name" : "Dyrus", "twitch" : "TSM_Dyrus"}}};
     function submitCreate(){
       var username = $('#create-name').val();
       makeCookie(username);
@@ -54,7 +54,7 @@
 
     function makeCookie(username){
       var current_time = new Date();
-      Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}/*,10000*/);
+      Cookies.set("streamerData", template/*{"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}*//*,10000*/);
     }
     function buildStreams(streamers,container){
       var counter = 0;
