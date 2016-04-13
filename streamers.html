@@ -20,7 +20,7 @@
           <div class="col-md-3">
             <h4><button class="btn btn-block btn-primary" style="text-align:left;"><span class="fa fa-search"></span> Browse Profiles</button></h4>
             <h4><button class="btn btn-block btn-success" style="text-align:left;" data-toggle="modal" data-target="#editUserModal"><span class="fa fa-pencil"></span> Edit User Profile</button></h4>
-            <h4><button class="btn btn-block btn-danger" style="text-align:left;"><span class="fa fa-remove"></span> Delete User Profile</button></h4>
+            <h4><button class="btn btn-block btn-danger" style="text-align:left;" onclick="removeCookie()"><span class="fa fa-remove"></span> Delete User Profile</button></h4>
           </div>
         </div>
       </div>
@@ -114,6 +114,10 @@
     function updateCookie(username,dataset){
       var current_time = new Date();
       Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : dataset}/*,10000*/);
+    }
+
+    function removeCookie(){
+      Cookies.remove("streamerData");
     }
 
     function addStreamerItem(container,name,twitch){
