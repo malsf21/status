@@ -25,7 +25,7 @@
     var streamerTemplate = '{"lastlogin" : 0, "data" : [{"name" : "malsf21", "twitch" : "malsf21"}]}'
     var cookieSet = Cookies.get();
     if ("streamerData" in cookieSet){
-      var streamerData = Cookies.get("streamerData");
+      var streamerData = Cookies.getJSON("streamerData");
       console.log(streamerData["lastlogin"]);
     }
     else{
