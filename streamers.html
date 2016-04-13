@@ -131,12 +131,20 @@
         tempDict['twitch'] = twitch;
         streamerListData[name] = tempDict;
       }
+			console.log(streamerListData);
+			console.log(JSON.stringify(streamerListData));
     }
     function removeStreamerData(name){
-
+			if (name in streamerListData){
+				delete streamerListData[name];
+			}
+			console.log(streamerListData);
+			console.log(JSON.stringify(streamerListData));
     }
     function revertStreamerData(){
       streamerListData = streamerListDataOld;
+			console.log(streamerListData);
+			console.log(JSON.stringify(streamerListData));
     }
 
     function buildStreams(streamers,container){
