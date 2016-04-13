@@ -181,7 +181,7 @@
       var streamerData = Cookies.getJSON("streamerData");
       var userUsername = streamerData["username"];
       $('.username').html(" " + userUsername);
-      var streamerListData = [];
+      var streamerListData = {};
       for (var key in streamerData["data"]){
         addStreamerItem('#new-streamer-list',streamerData["data"][key]["name"],streamerData["data"][key]["twitch"]);
       }
