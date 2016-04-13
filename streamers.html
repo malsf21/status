@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Status | By Matthew Wang</title>
+		<link rel="icon" href="css/favicon.ico" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/font-awesome.css" />
+  </head>
+  <body>
+    <div class="container" style="padding-top:10px;">
+      <div class="jumbotron">
+        <h1 class="page-header">Status: Streamers</h1>
+        <h3>What are your favourite streamers doing?</h3>
+
+      </div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/js.cookie.min.js"></script>
+  <script>
+    var streamerTemplate = '{"lastlogin" : 0, "data" : [{"name" : "malsf21", "twitch" : "malsf21"}]}'
+    var cookieSet = Cookies.get();
+    if ("streamerData" in cookieSet){
+      var streamerData = Cookies.get("streamerData");
+      console.log(streamerData["lastlogin"]);
+    }
+    else{
+      console.log("Setting");
+      Cookies.set("streamerData", {"lastlogin" : 0, "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}},10000);
+    }
+  </script>
+</html>
