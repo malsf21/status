@@ -174,7 +174,7 @@
       $('.username').html(" " + streamerData["username"]);
       buildStreams(streamerData["data"],"#streamer-container");
       for (var key in streamerData["data"]){
-        addStreamerItem('#new-streamer-list',streamerData["data"]["key"]["name"],streamerData["data"]["key"]["twitch"]);
+        addStreamerItem('#new-streamer-list',streamerData["data"][key]["name"],streamerData["data"][key]["twitch"]);
       }
     }
     else{
