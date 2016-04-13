@@ -16,29 +16,6 @@
         <h3>Hey<span class="username"></span>! <small>Let's take a look at your favourite streamers.</small></h3>
       </div>
       <div class="row" id="streamer-container">
-        <div class="col-sm-4">
-          <div class="well">
-            <h3><span class="label label-success"> <span class="fa fa-twitch"></span> Shroud is streaming</span></h3>
-            <h4><span class="label label-info"><span class="fa fa-gamepad"></span> Counter-Strike: Global Offensive</span></h4>
-            <h5>Watch Shroud live <a href="http://twitch.tv/">here.</a></h5>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <h3><span class="label label-danger"> <span class="fa fa-ban"></span> Bjergsen isn't streaming</span></h3>
-            <h5>Tune in to Bjergsen's channel <a href="http://twitch.tv/">here.</a></h5>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <h3>Derp</h3>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <h3>Derp</h3>
-          </div>
-        </div>
       </div>
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="createUserModal">
@@ -65,8 +42,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/js.cookie.min.js"></script>
+  <script src="js/structure.js"></script>
   <script src="js/twitch_parser.js"></script>
   <script>
+
+    var template = {"username" : "Matt","lastlogin" : 0, "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}};
     function submitCreate(){
       var username = $('#create-name').val();
       makeCookie(username);
@@ -76,13 +56,49 @@
       var current_time = new Date();
       Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}/*,10000*/);
     }
+    function buildStreams(streamers,container){
+      var counter = 0;
+      for (var key in streamers) {
+        var streamData = betterTwitchFetch(streamers[key]["twitch"]);
+        if (counter%3 == 1 && counter > 1){
+          $(container).append('</div><div class="row">');
+        }
+        // this part looks super messy, and that's because it is. Unfortunately, with how appending divs works, I have to do it this way.
+        if (streamData == false){
+          $(container).append('<div class="col-sm-4"><div class="well"><h3><span class="label label-danger"> <span class="fa fa-ban"></span> ' + streamers[key]["name"] + ' isn\'t streaming</span></h3><h5>Tune in to ' + streamers[key]["name"] + '\'s channel <a href="http://twitch.tv/'+ streamers[key]["twitch"] +'">here.</a></h5></div></div>');
+          /* Here's the clean version of this: (with a template)
+          <div class="col-sm-4">
+            <div class="well">
+              <h3><span class="label label-danger"> <span class="fa fa-ban"></span> Bjergsen isn't streaming</span></h3>
+              <h5>Tune in to Bjergsen's channel <a href="http://twitch.tv/">here.</a></h5>
+            </div>
+          </div>
+          Except, Bjergsen is replaced by the name of the streamer based on the key, and the twitch address is added with the key's twitch element.
+          */
+        }
+        else{
+          $(container).append('<div class="col-sm-4"><div class="well"><h3><span class="label label-success"> <span class="fa fa-twitch"></span> ' + streamers[key]["name"] + ' is streaming</span></h3><h4><span class="label label-info"><span class="fa fa-gamepad"></span> ' + streamData + '</span></h4><h5>Watch ' + streamers[key]["name"] + ' live <a href="http://twitch.tv/'+ streamers[key]["twitch"] +'">here.</a></h5></div></div>');
+          /* Here's a clean templated version of this
+          <div class="col-sm-4">
+            <div class="well">
+              <h3><span class="label label-success"> <span class="fa fa-twitch"></span> Shroud is streaming</span></h3>
+              <h4><span class="label label-info"><span class="fa fa-gamepad"></span> Counter-Strike: Global Offensive</span></h4>
+              <h5>Watch Shroud live <a href="http://twitch.tv/">here.</a></h5>
+            </div>
+          </div>
+          Shroud is replaced by the key's name element, Counter-Strike Global Offensive is replaced by streamData, and the twitch url is replaced by the key's twitch element.
+          */
+        }
+      }
+    }
     var cookieSet = Cookies.get();
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
       $('.username').html(" " + streamerData["username"]);
+      buildStreams(streamerData["data"],"#streamer-container");
     }
     else{
-      //$('#createUserModal').modal('show');
+      $('#createUserModal').modal('show');
     }
   </script>
 </html>
