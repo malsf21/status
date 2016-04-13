@@ -164,7 +164,7 @@
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
       $('.username').html(" " + streamerData["username"]);
-      var streamerListData = JSON.parse(streamerData["data"]);
+      var streamerListData = streamerData["data"];
       console.log(streamerListData);
       buildStreams(streamerData["data"],"#streamer-container");
       for (var key in streamerData["data"]){
