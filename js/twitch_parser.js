@@ -9,3 +9,14 @@ function twitchFetch(twitchUser){
   }
   twitchInfo();
 }
+
+function betterTwitchFetch(twitchUser){
+  var stream_data = JSON.parse(httpGet("https://api.twitch.tv/kraken/streams/"+twitchUser+"?jsoncallback=?"));
+
+  if (stream_data["stream"] != null){
+    return(stream_data["stream"]["game"]);
+  }
+  else{
+    return false;
+  }
+}
