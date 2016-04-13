@@ -17,20 +17,50 @@
 
       </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="createUserModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Welcome!</h2>
+          </div>
+          <div class="modal-body">
+            <h3>Hey there!</h3>
+            <p>Welcome to Status: Streamers. We've noticed that you haven't been here yet. Do you mind if we ask you a bit about yourself, so we can personalize your experience for you?</p>
+            <form method="post" onsubmit="submitCreate()">
+            <h3>Name:</h3>
+            <input type="text" id="create-name" name="name" class="form-control" required="" placeholder="John Smith">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/js.cookie.min.js"></script>
   <script>
-    var streamerTemplate = '{"lastlogin" : 0, "data" : [{"name" : "malsf21", "twitch" : "malsf21"}]}'
+
+    function submitCreate(){
+      var username = $('#create-name').val();
+      makeCookie();
+    }
+
+    function makeCookie(){
+      var current_time = new Date();
+      Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}/*,10000*/);
+    }
+    //var streamerTemplate = '{"lastlogin" : 0, "data" : [{"name" : "malsf21", "twitch" : "malsf21"}]}'
     var cookieSet = Cookies.get();
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
       console.log(streamerData["lastlogin"]);
+      console.log(streamerData["username"]);
     }
     else{
-      console.log("Setting");
-      Cookies.set("streamerData", {"lastlogin" : 0, "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}},10000);
+      $('#createUserModal').modal('show');
     }
   </script>
 </html>
