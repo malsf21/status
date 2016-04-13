@@ -112,7 +112,9 @@
     }
 
     function addStreamerItem(container,name,twitch){
-      $(container).append('<div class="panel panel-default"><div class="panel-body"><div class="row"><div class="col-sm-3" style="text-align:center;"><h4>' + name + '</h4></div><div class="col-sm-5" style="text-align:center;"><h4><a href="http://twitch.tv/'+ twitch + '/">'+ twitch +'</a></h4></div><div class="col-sm-3" style="color:white;text-align:right;"><button class="btn btn-danger list-close" onclick="removeStreamerData(' + name + ')"><span class="fa fa-remove"></span></button></div></div></div></div>')
+      if (!(name in streamerListData)){
+        $(container).append('<div class="panel panel-default"><div class="panel-body"><div class="row"><div class="col-sm-3" style="text-align:center;"><h4>' + name + '</h4></div><div class="col-sm-5" style="text-align:center;"><h4><a href="http://twitch.tv/'+ twitch + '/">'+ twitch +'</a></h4></div><div class="col-sm-3" style="color:white;text-align:right;"><button class="btn btn-danger list-close" onclick="removeStreamerData(' + name + ')"><span class="fa fa-remove"></span></button></div></div></div></div>');
+      }
     }
     function addStreamerData(name,twitch){
       if (!(name in streamerListData)){
