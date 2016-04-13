@@ -56,7 +56,6 @@
           <div class="modal-body">
             <h3>Hey <span class="username">there</span>!</h3>
             <p>If you want to edit the streamers that show up, you can add or remove them here!</p>
-            <form method="post" onsubmit="submitCreate()">
               <div class="panel panel-default">
                 <div class="panel-body">
                   <div class="row">
@@ -67,23 +66,24 @@
                       <input type="text" id="new-streamer-twitch" name="new-streamer-name" class="form-control" required="" placeholder="Twitch Username">
                     </div>
                     <div class="col-sm-3" style="color:white;text-align:right;">
-                      <button class="btn btn-success"><span class="fa fa-plus"></span></button> <button class="btn btn-danger"><span class="fa fa-ban"></span></button>
+                      <button class="btn btn-success" onclick="addStreamerItem('#new-streamer-list','#new-streamer-name','#new-streamer-twitch')"><span class="fa fa-plus"></span></button> <button class="btn btn-danger"><span class="fa fa-ban"></span></button>
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-sm-3" style="text-align:center;">
-                    <h4>Dyrus</h4>
-                  </div>
-                  <div class="col-sm-5" style="text-align:center;">
-                    <h4>TSM_Dyrus</h4>
-                  </div>
-                  <div class="col-sm-3" style="color:white;text-align:right;">
-                    <button class="btn btn-danger list-close"><span class="fa fa-remove"></span></button>
+            <div id="new-streamer-list">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-3" style="text-align:center;">
+                      <h4>Dyrus</h4>
+                    </div>
+                    <div class="col-sm-5" style="text-align:center;">
+                      <h4>TSM_Dyrus</h4>
+                    </div>
+                    <div class="col-sm-3" style="color:white;text-align:right;">
+                      <button class="btn btn-danger list-close"><span class="fa fa-remove"></span></button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -125,6 +125,13 @@
       var current_time = new Date();
       Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : dataset}/*,10000*/);
     }
+
+    function addStreamerItem(container,nameid,twitchid){
+      var name = $(nameid).val();
+      var twitch = $(twitchid).val();
+      $(container).append('<div class="panel panel-default"><div class="panel-body"><div class="row"><div class="col-sm-3" style="text-align:center;"><h4>' + name + '</h4></div><div class="col-sm-5" style="text-align:center;"><h4>'+ twitch +'</h4></div><div class="col-sm-3" style="color:white;text-align:right;"><button class="btn btn-danger list-close"><span class="fa fa-remove"></span></button></div></div></div></div>')
+    }
+
     function buildStreams(streamers,container){
       var counter = 0;
       for (var key in streamers) {
