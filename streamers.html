@@ -42,13 +42,12 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/js.cookie.min.js"></script>
   <script>
-
     function submitCreate(){
       var username = $('#create-name').val();
-      makeCookie();
+      makeCookie(username);
     }
 
-    function makeCookie(){
+    function makeCookie(username){
       var current_time = new Date();
       Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}/*,10000*/);
     }
