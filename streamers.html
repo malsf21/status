@@ -114,7 +114,6 @@
     function updateCookie(username,dataset){
       var current_time = new Date();
       Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : dataset}/*,10000*/);
-      console.log({"username" : username,"lastlogin" : current_time.getTime(), "data" : dataset);
     }
 
     function addStreamerItem(container,name,twitch){
