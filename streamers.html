@@ -116,7 +116,10 @@
     }
     function addStreamerData(name,twitch){
       //if (!(name in streamerListData)){
-        streamerListData.push({key: name, value: {"name" : name, "twitch" : twitch}});
+        var tempDict = {};
+        tempDict['name'] = name;
+        tempDict['twitch'] = twitch;
+        streamerListData[name] = tempDict;
         console.log(streamerListData);
       //}
     }
@@ -166,7 +169,10 @@
       $('.username').html(" " + streamerData["username"]);
       var streamerListData = [];
       for (var key in streamerData["data"]){
-        streamerListData.push({key: streamerData["data"][key]["name"], value: {"name" : streamerData["data"][key]["name"], "twitch" : streamerData["data"][key]["twitch"]}});
+        var tempDict = {};
+        tempDict['name'] = streamerData["data"][key]["name"];
+        tempDict['twitch'] = streamerData["data"][key]["twitch"];
+        streamerListData[streamerData["data"][key]["name"]] = tempDict;
       }
       console.log(streamerListData);
       buildStreams(streamerData["data"],"#streamer-container");
