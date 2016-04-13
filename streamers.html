@@ -106,7 +106,7 @@
       updateCookie(userUsername, JSON.stringify(streamerListData));
       console.log(JSON.stringify(streamerListData));
     }
-
+    submitEdit();
     function makeCookie(username){
       var current_time = new Date();
       Cookies.set("streamerData", template/*{"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}*//*,10000*/);
