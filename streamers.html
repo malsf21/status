@@ -66,27 +66,12 @@
                       <input type="text" id="new-streamer-twitch" name="new-streamer-name" class="form-control" required="" placeholder="Twitch Username">
                     </div>
                     <div class="col-sm-3" style="color:white;text-align:right;">
-                      <button class="btn btn-success" onclick="addStreamerItem('#new-streamer-list',$('#new-streamer-name').val(),$('#new-streamer-twitch').val())"><span class="fa fa-plus"></span></button> <button class="btn btn-danger"><span class="fa fa-ban"></span></button>
+                      <button class="btn btn-success" onclick="addStreamerItem('#new-streamer-list',$('#new-streamer-name').val(),$('#new-streamer-twitch').val());addStreamerItem($('#new-streamer-name').val(),$('#new-streamer-twitch').val())"><span class="fa fa-plus"></span></button> <button class="btn btn-danger"><span class="fa fa-ban"></span></button>
                     </div>
                   </div>
                 </div>
               </div>
             <div id="new-streamer-list">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-sm-3" style="text-align:center;">
-                      <h4>Dyrus</h4>
-                    </div>
-                    <div class="col-sm-5" style="text-align:center;">
-                      <h4>TSM_Dyrus</h4>
-                    </div>
-                    <div class="col-sm-3" style="color:white;text-align:right;">
-                      <button class="btn btn-danger list-close"><span class="fa fa-remove"></span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -127,7 +112,16 @@
     }
 
     function addStreamerItem(container,name,twitch){
-      $(container).append('<div class="panel panel-default"><div class="panel-body"><div class="row"><div class="col-sm-3" style="text-align:center;"><h4>' + name + '</h4></div><div class="col-sm-5" style="text-align:center;"><h4><a href="http://twitch.tv/'+ twitch + '/">'+ twitch +'</a></h4></div><div class="col-sm-3" style="color:white;text-align:right;"><button class="btn btn-danger list-close"><span class="fa fa-remove"></span></button></div></div></div></div>')
+      $(container).append('<div class="panel panel-default"><div class="panel-body"><div class="row"><div class="col-sm-3" style="text-align:center;"><h4>' + name + '</h4></div><div class="col-sm-5" style="text-align:center;"><h4><a href="http://twitch.tv/'+ twitch + '/">'+ twitch +'</a></h4></div><div class="col-sm-3" style="color:white;text-align:right;"><button class="btn btn-danger list-close" onclick="removeStreamerData(' + name + ')"><span class="fa fa-remove"></span></button></div></div></div></div>')
+    }
+    function addStreamerData(name,twitch){
+      if (!(name in streamerListData)){
+        streamerListData.push({key: name, value: {"name" : name, "twitch" : twitch}});
+        console.log(streamerListData);
+      }
+    }
+    function removeStreamerData(name){
+
     }
 
     function buildStreams(streamers,container){
@@ -170,6 +164,8 @@
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
       $('.username').html(" " + streamerData["username"]);
+      var streamerListData = JSON.parse(streamerData["data"]);
+      console.log(streamerListData);
       buildStreams(streamerData["data"],"#streamer-container");
       for (var key in streamerData["data"]){
         addStreamerItem('#new-streamer-list',streamerData["data"][key]["name"],streamerData["data"][key]["twitch"]);
