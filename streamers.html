@@ -18,7 +18,7 @@
             <h3>Hey<span class="username"></span>! <small>Let's take a look at your favourite streamers.</small></h3>
           </div>
           <div class="col-md-3">
-            <h4><button class="btn btn-block btn-primary" style="text-align:left;"><span class="fa fa-search"></span> Browse Profiles</button></h4>
+            <h4><button class="btn btn-block btn-primary" style="text-align:left;" data-toggle="modal" data-target="#browseProfileModal"><span class="fa fa-search"></span> Browse Profiles</button></h4>
             <h4><button class="btn btn-block btn-success" style="text-align:left;" data-toggle="modal" data-target="#editUserModal"><span class="fa fa-pencil"></span> Edit User Profile</button></h4>
             <h4><button class="btn btn-block btn-danger" style="text-align:left;" data-toggle="modal" data-target="#deleteUserModal"><span class="fa fa-remove"></span> Delete User Profile</button></h4>
           </div>
@@ -84,22 +84,65 @@
       </div>
     </div>
 		<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="deleteUserModalLabel">Delete User Profile</h4>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to <b>delete your user profile</b>? You'll lose all of your data!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">No, I like this website!</button>
-        <button type="button" class="btn btn-danger" onclick="removeCookie()">Yeah, go ahead!</button>
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="deleteUserModalLabel">Delete User Profile</h4>
+		      </div>
+		      <div class="modal-body">
+		        Are you sure you want to <b>delete your user profile</b>? You'll lose all of your data!
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">No, I like this website!</button>
+		        <button type="button" class="btn btn-danger" onclick="removeCookie()">Yeah, go ahead!</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" tabindex="-1" role="dialog" id="browseProfileModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Browse Profiles</h2>
+          </div>
+          <div class="modal-body">
+            <h4>Looking to find something new? Browse our curated sets of streamers here!</h4>
+            <p>Want to suggest a set? Drop a pull request on the <a href="https://github.com/malsf21/status"><span class="label label-primary"><span class="fa fa-code-fork"></span> GitHub repository</span></a></p>
+              <div class="panel panel-default">
+                <div class="panel-body">
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+									    <h6>User Profile</h6>
+									  </label>
+									</div>
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									    <h6>TSM (League of Legends)</h6>
+									  </label>
+									</div>
+									<div class="radio">
+									  <label>
+									    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+									    <h6>C9 (Counter-Strike: Global Offensive)</h6>
+									  </label>
+									</div>
+                </div>
+              </div>
+            <div id="profile-group-list">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <form method="post" onsubmit="submitEdit()">
+              <button type="button" class="btn btn-default" data-dismiss="modal" onclick="revertStreamerData()">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
   </body>
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -225,7 +268,7 @@
       buildStreams(streamerListData,"#streamer-container");
     }
     else{
-      $('#createUserModal').modal('show');
+      //$('#createUserModal').modal('show');
     }
   </script>
 </html>
