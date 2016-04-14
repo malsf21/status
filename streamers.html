@@ -125,7 +125,6 @@
 
     function submitEdit(){
       updateCookie(userUsername, streamerListData);
-      console.log(JSON.stringify(streamerListData));
     }
     function makeCookie(username){
       var current_time = new Date();
@@ -153,20 +152,14 @@
         tempDict['twitch'] = twitch;
         streamerListData[name] = tempDict;
       }
-			console.log(streamerListData);
-			console.log(JSON.stringify(streamerListData));
     }
     function removeStreamerData(name){
 			if (name in streamerListData){
 				delete streamerListData[name];
 			}
-			console.log(streamerListData);
-			console.log(JSON.stringify(streamerListData));
     }
     function revertStreamerData(){
       streamerListData = streamerListDataOld;
-			console.log(streamerListData);
-			console.log(JSON.stringify(streamerListData));
     }
 
     function buildStreams(streamers,container){
@@ -206,7 +199,6 @@
     }
 
     var cookieSet = Cookies.get();
-		console.log(cookieSet);
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
       var userUsername = streamerData["username"];
@@ -223,17 +215,9 @@
       }
       streamerListDataOld = streamerListData;
       buildStreams(streamerListData,"#streamer-container");
-			console.log(streamerListData);
-			console.log(JSON.stringify(streamerListData));
     }
     else{
       $('#createUserModal').modal('show');
     }
   </script>
-	<!--
-	<script>
-	var cookieSet = Cookies.get();
-	console.log(cookieSet);
-	</script>
--->
 </html>
