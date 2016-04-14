@@ -129,7 +129,7 @@
     }
     function makeCookie(username){
       var current_time = new Date();
-      Cookies.set("streamerData", template/*{"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"}}}*//*,10000*/);
+      Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"},"Dyrus" : {"name" : "Dyrus", "twitch" : "TSM_Dyrus"}}}/*,10000*/);
     }
     function updateCookie(username,dataset){
       var current_time = new Date();
