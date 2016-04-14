@@ -20,7 +20,7 @@
           <div class="col-md-3">
             <h4><button class="btn btn-block btn-primary" style="text-align:left;"><span class="fa fa-search"></span> Browse Profiles</button></h4>
             <h4><button class="btn btn-block btn-success" style="text-align:left;" data-toggle="modal" data-target="#editUserModal"><span class="fa fa-pencil"></span> Edit User Profile</button></h4>
-            <h4><button class="btn btn-block btn-danger" style="text-align:left;" onclick="removeCookie()"><span class="fa fa-remove"></span> Delete User Profile</button></h4>
+            <h4><button class="btn btn-block btn-danger" style="text-align:left;" data-toggle="modal" data-target="#deleteUserModal"><span class="fa fa-remove"></span> Delete User Profile</button></h4>
           </div>
         </div>
       </div>
@@ -83,6 +83,23 @@
         </div>
       </div>
     </div>
+		<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="deleteUserModalLabel">Delete User Profile</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to <b>delete your user profile</b>? You'll lose all of your data!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No, I like this website!</button>
+        <button type="button" class="btn btn-danger" onclick="removeCookie()">Yeah, go ahead!</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -90,6 +107,10 @@
   <script src="js/structure.js"></script>
   <script src="js/twitch_parser.js"></script>
   <script>
+		/*
+			Here's a better example name: Vaasudevan Lambotharan
+			Moral support creds to John Mace
+		*/
 
     var template = {"username" : "Matt","lastlogin" : 0, "data" : {"malsf21" : {"name" : "malsf21", "twitch" : "malsf21"},"Dyrus" : {"name" : "Dyrus", "twitch" : "TSM_Dyrus"}}};
 
