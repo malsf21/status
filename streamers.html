@@ -103,7 +103,7 @@
     }
 
     function submitEdit(){
-      updateCookie(userUsername, JSON.stringify(streamerListData));
+      updateCookie(userUsername, streamerListData);
       console.log(JSON.stringify(streamerListData));
     }
     function makeCookie(username){
@@ -135,9 +135,9 @@
 			console.log(JSON.stringify(streamerListData));
     }
     function removeStreamerData(name){
-			//if (name in streamerListData){
+			if (name in streamerListData){
 				delete streamerListData[name];
-			//}
+			}
 			console.log(streamerListData);
 			console.log(JSON.stringify(streamerListData));
     }
