@@ -133,7 +133,6 @@
     function updateCookie(username,dataset){
       var current_time = new Date();
       Cookies.set("streamerData", {"username" : username,"lastlogin" : current_time.getTime(), "data" : dataset}/*,10000*/);
-			console.log(dataset);
 			location.reload(true);
     }
 
@@ -205,6 +204,7 @@
     }
 
     var cookieSet = Cookies.get();
+		console.log(cookieSet);
     if ("streamerData" in cookieSet){
       var streamerData = Cookies.getJSON("streamerData");
       var userUsername = streamerData["username"];
