@@ -141,7 +141,7 @@
 		          artists += ", ";
 		        }
 		        artists = artists.substring(0,artists.length-2);
-						resultString += '<div class="row"><div class="col-sm-4"><img class="img-responsive" src="' + matt["items"][i]["album"]["images"][0]["url"] + '"></div><div class="col-sm-8"><h4>'+ matt["items"][i]["name"] +'</h4><h5>'+ artists +'</h5><h6>Matt Rank: ' + i + '</h6><h6>Your Rank: ' + j + '</h6></div></div>';
+						resultString += '<div class="row"><div class="col-sm-4"><img class="img-responsive" src="' + matt["items"][i]["album"]["images"][0]["url"] + '"></div><div class="col-sm-8"><h4>'+ matt["items"][i]["name"] +'</h4><h5>'+ artists +'</h5><h6>Matt Rank: ' + (i + 1) + '</h6><h6>Your Rank: ' + (j + 1) + '</h6></div></div>';
 						/*
 						<div class="row">
 							<div class="col-sm-4">
@@ -150,8 +150,8 @@
 							<div class="col-sm-8">
 								<h4>'+ matt["items"][i]["name"] +'</h4>
 								<h5>'+ artists +'</h5>
-								<h6>Matt Rank: ' + i + '</h6>
-								<h6>Your Rank: ' + j + '</h6>
+								<h6>Matt Rank: ' + (i + 1) + '</h6>
+								<h6>Your Rank: ' + (j + 1) + '</h6>
 							</div>
 						</div>
 						*/
