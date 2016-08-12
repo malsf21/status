@@ -24,8 +24,8 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-container">
           <ul class="nav navbar-nav">
             <li><a href="matt.html">Matt</a></li>
-						<li><a href="matts-tracks.html">Matt's Tracks</a></li>
-            <li class="active"><a href="track-stat.html">Track Stats</a></li>
+						<li class="active"><a href="matts-tracks.html">Matt's Tracks</a></li>
+            <li><a href="track-stat.html">Track Stats</a></li>
             <li><a href="streamers.html">Streamers</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -36,16 +36,25 @@
     </nav>
     <div class="container">
       <div class="jumbotron">
-        <h3>I like music. You like music. Let's see what kind of music we like. <span class="label label-warning">WIP</span></h3>
-				<p>
-					Visit <a href="https://developer.spotify.com/web-api/console/get-current-user-top-artists-and-tracks/">this link</a> to get a JSON response of your favourite tracks, and compare it to mine!
-				</p>
+				<h1>Matt's Tracks</h1>
+        <h3>A look into my music listening trends.</h3>
 				<div class="row">
-					<div class="col-sm-8">
-						<textarea class="form-control" placeholder="Paste your JSON response here!" id="user-submit"></textarea>
+					<div class="col-sm-4">
+						<h3>Period 1</h3>
+						<select class="form-control" id="period-1">
+						  <option value="june-july-2016.min.json">June/July 2016</option>
+						  <option value="july-august-2016.min.json">July/August 2016</option>
+						</select>
 					</div>
 					<div class="col-sm-4">
-						<button role="button" class="btn btn-primary" id="compare-submit">Compare</button>
+						<h3>Period 2</h3>
+						<select class="form-control" id="period-2">
+						  <option value="june-july-2016.min.json">June/July 2016</option>
+						  <option value="july-august-2016.min.json">July/August 2016</option>
+						</select>
+					</div>
+					<div class="col-sm-4">
+						<button role="button" class="btn btn-primary" id="period-compare">Compare</button>
 					</div>
 				</div>
 				<p>More functionality coming soon.</p>
@@ -54,21 +63,22 @@
 			</div>
       <div>
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#matt" aria-controls="matt" role="tab" data-toggle="tab">Matt</a></li>
-          <li role="presentation"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">You</a></li>
+          <li role="presentation" class="active"><a href="#period-1-tab" aria-controls="period-1-tab" role="tab" data-toggle="tab">Period 1</a></li>
+          <li role="presentation"><a href="#period-2-tab" aria-controls="period-2-tab" role="tab" data-toggle="tab">Period 2</a></li>
 					<li role="presentation"><a href="#compare" aria-controls="compare" role="tab" data-toggle="tab">Compare</a></li>
         </ul>
 				<div class="row">
 	        <div class="tab-content">
-	          <div role="tabpanel" class="tab-pane active" id="matt">
+	          <div role="tabpanel" class="tab-pane active" id="period-1-tab">
 	            <div class="col-sm-8">
-	              <div id="matt-container">
+	              <div id="period-1-container">
+									<h1>Input some data to get started!</h1>
 	              </div>
 	            </div>
 	          </div>
-	          <div role="tabpanel" class="tab-pane" id="user">
+	          <div role="tabpanel" class="tab-pane" id="period-2-tab">
 							<div class="col-sm-8">
-								<div id="user-container">
+								<div id="period-2-container">
 									<h1>Input some data to get started!</h1>
 								</div>
 							</div>
@@ -99,26 +109,24 @@
   <script src="js/bootstrap.min.js"></script>
 	<script src="js/structure.js"></script>
   <script>
-		$( document ).ready(function() {
-			renderList(data, "#matt-container");
-		});
     function renderList(data, container){
       var resultString = "";
-      for (var key in data["items"]){
+      for (i = 0; i < data["items"].length; i++){
         var artists = "";
-        for (artist in data["items"][key]["artists"]){
-          artists += data["items"][key]["artists"][artist]["name"];
+        for (artist in data["items"][i]["artists"]){
+          artists += data["items"][i]["artists"][artist]["name"];
           artists += ", ";
         }
         artists = artists.substring(0,artists.length-2);
-        resultString += '<div class="row"> <div class="col-sm-4"> <img class="img-responsive" src="' + data["items"][key]["album"]["images"][0]["url"] + '"> </div><div class="col-sm-8"> <h4>'+ data["items"][key]["name"] +'</h4> <h5>'+ artists +'</h5> </div></div>';
+        resultString += '<div class="row"> <div class="col-sm-4"> <img class="img-responsive" src="' + data["items"][i]["album"]["images"][0]["url"] + '"> </div><div class="col-sm-8"><h3>Rank: ' + (i+1) + '</h3><h4>'+ data["items"][i]["name"] +'</h4> <h5>'+ artists +'</h5> </div></div>';
         /*
           <div class="row">
             <div class="col-sm-4">
-              <img class="img-responsive" src="' + data["items"][key]["album"]["images"][0]["url"] + '">
+              <img class="img-responsive" src="' + data["items"][i]["album"]["images"][0]["url"] + '">
             </div>
             <div class="col-sm-8">
-              <h4>'+ data["items"][key]["name"] +'</h4>
+							<h3>Rank: ' + (i+1) + '</h3>
+              <h4>'+ data["items"][i]["name"] +'</h4>
               <h5>'+ artists +'</h5>
             </div>
           </div>
@@ -127,35 +135,35 @@
       $(container).html(resultString);
       return resultString;
     }
-		function compareData(matt,user, container, totalcontainer){
+		function compareData(data1,data2, container, totalcontainer){
 			var resultString = "";
 			var totalCount = 0;
-			if (matt["items"].length > user["items"].length){
-				var lengths = user["items"].length;
+			if (data1["items"].length > data2["items"].length){
+				var lengths = data2["items"].length;
 			}
 			else{
-				var lengths = matt["items"].length;
+				var lengths = data1["items"].length;
 			}
-			for (i = 0; i < matt["items"].length; i++){
-				for (j = 0; j < user["items"].length; j++){
-					if (matt["items"][i]["id"] == user["items"][j]["id"]){
+			for (i = 0; i < data1["items"].length; i++){
+				for (j = 0; j < data2["items"].length; j++){
+					if (data1["items"][i]["id"] == data2["items"][j]["id"]){
 						var artists = "";
-						for (artist in matt["items"][i]["artists"]){
-		          artists += matt["items"][i]["artists"][artist]["name"];
+						for (artist in data1["items"][i]["artists"]){
+		          artists += data1["items"][i]["artists"][artist]["name"];
 		          artists += ", ";
 		        }
 		        artists = artists.substring(0,artists.length-2);
-						resultString += '<div class="row"><div class="col-sm-4"><img class="img-responsive" src="' + matt["items"][i]["album"]["images"][0]["url"] + '"></div><div class="col-sm-8"><h4>'+ matt["items"][i]["name"] +'</h4><h5>'+ artists +'</h5><h6>Matt Rank: ' + (i + 1) + '</h6><h6>Your Rank: ' + (j + 1) + '</h6></div></div>';
+						resultString += '<div class="row"><div class="col-sm-4"><img class="img-responsive" src="' + data1["items"][i]["album"]["images"][0]["url"] + '"></div><div class="col-sm-8"><h4>'+ data1["items"][i]["name"] +'</h4><h5>'+ artists +'</h5><h6>Period 1 Rank: ' + (i + 1) + '</h6><h6>Period 2 Rank: ' + (j + 1) + '</h6></div></div>';
 						/*
 						<div class="row">
 							<div class="col-sm-4">
-								<img class="img-responsive" src="' + matt["items"][i]["album"]["images"][0]["url"] + '">
+								<img class="img-responsive" src="' + data1["items"][i]["album"]["images"][0]["url"] + '">
 							</div>
 							<div class="col-sm-8">
-								<h4>'+ matt["items"][i]["name"] +'</h4>
+								<h4>'+ data1["items"][i]["name"] +'</h4>
 								<h5>'+ artists +'</h5>
-								<h6>Matt Rank: ' + (i + 1) + '</h6>
-								<h6>Your Rank: ' + (j + 1) + '</h6>
+								<h6>Period 1 Rank: ' + (i + 1) + '</h6>
+								<h6>Period 2 Rank: ' + (j + 1) + '</h6>
 							</div>
 						</div>
 						*/
@@ -168,32 +176,17 @@
 				$(totalcontainer).html("Total: " + totalCount);
 			}
 			else{
-				$(totalcontainer).html("I got nothing. Seems like our music tastes are very different, or something's wrong with the input.");
+				$(totalcontainer).html("Nothing! Damn!.");
 			}
       return resultString;
 		}
-		function checkInput(input){
-			try
-			{
-			   var json = JSON.parse(input);
-				 return true;
-			}
-			catch(e)
-			{
-			   $("#alert-container").html('<div class="alert alert-danger" role="alert"><h6><span class="fa fa-remove"></span> Oh no! Your input is not working properly. Try again!</h6></div>');
-			}
-		}
-		$("#compare-submit").click(function(){
-			var userval = $("#user-submit").val();
-			if (checkInput(userval) === true){
-				renderList(JSON.parse(userval), "#user-container");
-				compareData(data,JSON.parse(userval), "#compare-container", "#total-container");
-				$("#alert-container").html('<div class="alert alert-success" role="alert"><h6><span class="fa fa-check"></span> Awesome! It worked! Check out the Compare tab for info on how much we have in common.</h6></div>');
-			}
-			else{
-				$("#alert-container").html('<div class="alert alert-danger" role="alert"><h6><span class="fa fa-remove"></span> Oh no! Your input is not working properly. Try again!</h6></div>');
-			}
+		$("#period-compare").click(function(){
+			var data1 = JSON.parse(httpGet("resources/" + $("#period-1").val()));
+			var data2 = JSON.parse(httpGet("resources/" + $("#period-2").val()));
+			renderList(data1, "#period-1-container");
+			renderList(data2, "#period-2-container");
+			compareData(data1,data2, "#compare-container", "#total-container");
+			$("#alert-container").html('<div class="alert alert-success" role="alert"><h6><span class="fa fa-check"></span> Awesome! It worked! Check out the Compare tab for info on looking at the two different periods.</h6></div>');
 		});
-		var data = JSON.parse(httpGet("resources/july-august-2016.min.json"));
   </script>
 </html>
