@@ -193,9 +193,13 @@
 		}
 		$("#period-compare").click(function(){
 			$.get("resources/" + $("#period-1").val(), function( data ) {
+				console.log(data);
+				console.log(JSON.parse(data));
 				var dataa = JSON.parse(data);
 				renderList(dataa, "#period-1-container");
 				$.get("resources/" + $("#period-2").val(), function( data ) {
+					console.log(data);
+					console.log(JSON.parse(data));
 					var datab = JSON.parse(data);
 					renderList(datab, "#period-2-container");
 					compareData(dataa,datab, "#compare-container", "#total-container");
