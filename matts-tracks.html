@@ -119,7 +119,6 @@
   </body>
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-	<script src="js/structure.js"></script>
   <script>
     function renderList(data, container){
       var resultString = "";
@@ -193,12 +192,16 @@
       return resultString;
 		}
 		$("#period-compare").click(function(){
-			var data1 = JSON.parse(httpGet("resources/" + $("#period-1").val()));
-			var data2 = JSON.parse(httpGet("resources/" + $("#period-2").val()));
-			renderList(data1, "#period-1-container");
-			renderList(data2, "#period-2-container");
-			compareData(data1,data2, "#compare-container", "#total-container");
-			$("#alert-container").html('<div class="alert alert-success" role="alert"><h6><span class="fa fa-check"></span> Awesome! It worked! Check out the Compare tab for info on looking at the two different periods.</h6></div>');
+			$.get("resources/" + $("#period-1").val(), function( data1 ) {
+				var dataa = JSON.parse(data1);
+				renderList(dataa, "#period-1-container");
+				$.get("resources/" + $("#period-2").val(),, function( data2 ) {
+					var datab = JSON.parse(data2);
+					renderList(datab, "#period-2-container");
+					compareData(dataa,datab, "#compare-container", "#total-container");
+					$("#alert-container").html('<div class="alert alert-success" role="alert"><h6><span class="fa fa-check"></span> Awesome! It worked! Check out the Compare tab for info on looking at the two different periods.</h6></div>');
+				})
+			})
 		});
   </script>
 </html>
