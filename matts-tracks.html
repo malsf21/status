@@ -192,11 +192,11 @@
       return resultString;
 		}
 		$("#period-compare").click(function(){
-			$.get("resources/" + $("#period-1").val(), function( data1 ) {
-				var dataa = JSON.parse(data1);
+			$.get("resources/" + $("#period-1").val(), function( data ) {
+				var dataa = JSON.parse(data);
 				renderList(dataa, "#period-1-container");
-				$.get("resources/" + $("#period-2").val(), function( data2 ) {
-					var datab = JSON.parse(data2);
+				$.get("resources/" + $("#period-2").val(), function( data ) {
+					var datab = JSON.parse(data);
 					renderList(datab, "#period-2-container");
 					compareData(dataa,datab, "#compare-container", "#total-container");
 					$("#alert-container").html('<div class="alert alert-success" role="alert"><h6><span class="fa fa-check"></span> Awesome! It worked! Check out the Compare tab for info on looking at the two different periods.</h6></div>');
