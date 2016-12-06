@@ -195,7 +195,7 @@
 			$.get("resources/" + $("#period-1").val(), function( data1 ) {
 				var dataa = JSON.parse(data1);
 				renderList(dataa, "#period-1-container");
-				$.get("resources/" + $("#period-2").val(),, function( data2 ) {
+				$.get("resources/" + $("#period-2").val(), function( data2 ) {
 					var datab = JSON.parse(data2);
 					renderList(datab, "#period-2-container");
 					compareData(dataa,datab, "#compare-container", "#total-container");
